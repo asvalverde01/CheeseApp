@@ -74,11 +74,14 @@ namespace CheeseApp.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "Nombre no puede estar vacío", MinimumLength = 1)]
             [Display(Name = "Nombre")]
+            [DataType(DataType.Text)]
             public string FirstName { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "Apellido no puede estar vacío", MinimumLength = 1)]
             [Display(Name = "Apellido")]
+            [DataType(DataType.Text)]
+
             public string LastName { get; set; }
 
             /// <summary>
@@ -113,6 +116,10 @@ namespace CheeseApp.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/Home");
+            }
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }

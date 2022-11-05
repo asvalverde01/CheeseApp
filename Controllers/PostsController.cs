@@ -10,9 +10,12 @@ using CheeseApp.Models;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CheeseApp.Controllers
 {
+    [Authorize]
+    
     public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -62,7 +65,7 @@ namespace CheeseApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FechaPost,Descripcion,ImagenUrl, ImagenFile")] Post post)
+        public async Task<IActionResult> Create([Bind("ID,FechaPost,Descripcion,ImagenFile")] Post post)
         {
             
             if (ModelState.IsValid)
