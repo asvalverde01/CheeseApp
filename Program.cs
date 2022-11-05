@@ -14,6 +14,8 @@ builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireCo
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+IConfiguration configuration = app.Configuration;
+IWebHostEnvironment environment = app.Environment;
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

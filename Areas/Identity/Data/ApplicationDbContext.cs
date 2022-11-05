@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using CheeseApp.Models;
 
 namespace CheeseApp.Areas.Identity.Data;
 
@@ -31,4 +32,6 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
             builder.Property(p => p.LastName).HasMaxLength(50);
         }
     }
+
+    public DbSet<CheeseApp.Models.Post> Post { get; set; }
 }
