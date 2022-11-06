@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CheeseApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221105220848_changes")]
-    partial class changes
+    [Migration("20221106233337_cambio1")]
+    partial class cambio1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -114,7 +114,6 @@ namespace CheeseApp.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ImagenUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");

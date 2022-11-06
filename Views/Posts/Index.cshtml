@@ -4,40 +4,71 @@
 	ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<style>
+	.center {
+		margin: auto;
+		width: 60%;
+		padding: 10px;
+		border-radius: 25px;
+		margin-bottom: 10px;
+	}
 
-<p>
-	<a asp-action="Create">Create New</a>
-</p>
+	img {
+		transition: 1.1s;
+	}
+
+	img:hover {
+		-ms-transform: scale(1.5); /* IE 9 */
+		-webkit-transform: scale(1.5); /* Safari 3-8 */
+		transform: scale(1.5);
+	}
+
+</style>
+
+<div class="center" style="border: 3px solid gray;">
+	<table>
+		<tr>
+			<th>
+				<h3>Qué está en tu mente? </h3>
+			</th>
+			<th>
+				<a asp-action="Create"><h3>Crear post</h3></a>
+			</th>
+		</tr>
+	</table>
+</div>
+
+
 
 
 <!-- Crear contenido -->
-<div>
-	
-</div>
 <!-- Contenido de Publicaciones -->
 <div>
 	@foreach (var item in Model)
 	{
-		<ul>
-			<li>
-				@Html.DisplayFor(modelItem => item.Date)
-			</li>
-			<li>
-				@Html.DisplayFor(modelItem => item.Descripcion)
-			</li>
-			<li>
-				<img src="~/dataImages/@item.ImagenUrl" style="width: 400px; height: 400px;" />
+		<div class="center" style="border: 2px solid gray;">
 
-			</li>
-			<li>
-				<a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-				<a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-				<a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-			</li>
+			<ul style="list-style-type:none">
+				<li>
+					@Html.DisplayFor(modelItem => item.Date)
+				</li>
 
-		</ul>
+				<li>
+					@Html.DisplayFor(modelItem => item.Descripcion)
+				</li>
+				<li>
+					<img class="rounded mx-auto d-block" src="~/dataImages/@item.ImagenUrl" style="width: 400px; height: 400px;" />
+
+				</li>
+				<li class="center">
+					<a  asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+					<a  asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+				</li>
+
+			</ul>
+		</div>
 
 	}
 </div>
+
 

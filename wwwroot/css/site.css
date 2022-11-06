@@ -17,25 +17,24 @@ body {
     margin-bottom: 60px;
     font-family: "Roboto", sans-serif;
     background-color: white;
-    
 }
 
+
 #navbar {
-    background-color: #277BA5;
+    background-color: #fbad50;
     color: white;
     transition: 0.5s;
-    
 }
 
     #navbar a {
         color: orange;
-        font-size: 16px;
+        
         transition: 0.2s;
     }
 
     #navbar a:hover {
         color: white;
-        font-size: 18px;
+        
     }
 
 .button {
@@ -70,3 +69,42 @@ body {
 <!--
 https://coolors.co/palette/6ab6dc-49a6d4-2f94c6-277ba5-1f6284-e0b700-ffd20a-ffda33-ffe15c-ffe570
 -->
+
+.center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+
+a {
+    background-image: linear-gradient( to right, #54b3d6, #54b3d6 50%, #000 50% );
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    padding: 5px 0;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+    a:before {
+        content: '';
+        background: #54b3d6;
+        display: block;
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    a:hover {
+        background-position: 0;
+    }
+
+        a:hover::before {
+            width: 100%;
+        }

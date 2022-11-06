@@ -8,9 +8,9 @@ namespace CheeseApp.Models
     {
 
         public int ID { get; set; }
+        // Linked to identity user
 
         [Required]
-        [Display(Name = "Fecha de publicación")]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
@@ -24,7 +24,7 @@ namespace CheeseApp.Models
                 ErrorMessage = "Descripción no puede estar vacía",
                 MinimumLength = 2)
         ]
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
 
         public string? ImagenUrl { get; set; }
         // Image type

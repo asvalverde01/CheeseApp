@@ -14,7 +14,7 @@ namespace CheeseApp.Controllers
 {
     [Authorize]
     public class PostsController : Controller
-    {  
+    {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
 
@@ -27,8 +27,8 @@ namespace CheeseApp.Controllers
         // GET: Posts
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Post.ToListAsync());
-            
+            return View(await _context.Post.ToListAsync());
+
         }
 
         // GET: Posts/Details/5
@@ -66,6 +66,10 @@ namespace CheeseApp.Controllers
             {
                 string uniqueFileName = UploadedFile(post);
                 post.ImagenUrl = uniqueFileName;
+                post.Date = DateTime.Now;
+                //post.UserID = User.Identity.Name;
+                //post.Institucion = "vacio";
+
 
                 _context.Add(post);
                 await _context.SaveChangesAsync();
@@ -157,14 +161,14 @@ namespace CheeseApp.Controllers
             {
                 _context.Post.Remove(post);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PostExists(int id)
         {
-          return _context.Post.Any(e => e.ID == id);
+            return _context.Post.Any(e => e.ID == id);
         }
 
         private string UploadedFile(Post post)
