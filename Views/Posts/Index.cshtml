@@ -1,47 +1,43 @@
 ﻿@model IEnumerable<CheeseApp.Models.Post>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+	<a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaPost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagenUrl)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaPost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImagenUrl)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+<!-- Crear contenido -->
+<div>
+	
+</div>
+<!-- Contenido de Publicaciones -->
+<div>
+	@foreach (var item in Model)
+	{
+		<ul>
+			<li>
+				@Html.DisplayFor(modelItem => item.Date)
+			</li>
+			<li>
+				@Html.DisplayFor(modelItem => item.Descripcion)
+			</li>
+			<li>
+				<img src="~/dataImages/@item.ImagenUrl" style="width: 400px; height: 400px;" />
+
+			</li>
+			<li>
+				<a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+				<a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+				<a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+			</li>
+
+		</ul>
+
+	}
+</div>
+

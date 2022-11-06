@@ -6,12 +6,16 @@ namespace CheeseApp.Models
 {
     public class Post
     {
-        
+
         public int ID { get; set; }
-        
+
         [Required]
         [Display(Name = "Fecha de publicación")]
-        public String? FechaPost { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime Date { get; set; }
+
+        // Initialize Date
+
 
         [Required]
         [
@@ -20,14 +24,13 @@ namespace CheeseApp.Models
                 ErrorMessage = "Descripción no puede estar vacía",
                 MinimumLength = 2)
         ]
-        public string? Descripcion { get; set; }
+        public string Descripcion { get; set; }
 
-        public string ImagenUrl { get; set; }
+        public string? ImagenUrl { get; set; }
         // Image type
-        [Required]
         [Display(Name = "Subir una imagen ")]
         [NotMapped]
-        public IFormFile ImagenFile { get; set; }
+        public IFormFile? ImagenFile { get; set; }
 
     }
 }

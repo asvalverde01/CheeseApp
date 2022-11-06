@@ -7,33 +7,28 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CheeseApp.Areas.Identity.Data;
 using CheeseApp.Models;
-using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Hosting;
-using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CheeseApp.Controllers
 {
     [Authorize]
-    
     public class PostsController : Controller
-    {
+    {  
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
-        
 
-        public PostsController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public PostsController(ApplicationDbContext context, IWebHostEnvironment environment)
         {
             _context = context;
-            _hostEnvironment = hostEnvironment;
+            this._hostEnvironment = environment;
         }
-        
-        
 
         // GET: Posts
         public async Task<IActionResult> Index()
         {
               return View(await _context.Post.ToListAsync());
+            
         }
 
         // GET: Posts/Details/5
@@ -65,14 +60,13 @@ namespace CheeseApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FechaPost,Descripcion,ImagenFile")] Post post)
+        public async Task<IActionResult> Create([Bind("ID,Date,Descripcion,ImagenFile")] Post post)
         {
-            
             if (ModelState.IsValid)
             {
-                string uFileName = ProcessUploadedFile(post);
-                post.ImagenUrl = uFileName;
-                
+                string uniqueFileName = UploadedFile(post);
+                post.ImagenUrl = uniqueFileName;
+
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -101,7 +95,7 @@ namespace CheeseApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,FechaPost,Descripcion,ImagenUrl")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Date,Descripcion,ImagenUrl")] Post post)
         {
             if (id != post.ID)
             {
@@ -173,22 +167,23 @@ namespace CheeseApp.Controllers
           return _context.Post.Any(e => e.ID == id);
         }
 
-        private string ProcessUploadedFile(Post post)
+        private string UploadedFile(Post post)
         {
-            string uniqueFileName = null;
-
-            if (post.ImagenFile != null)
             {
-                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + post.ImagenFile.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                string fileName = null;
+                if (post.ImagenFile != null)
                 {
-                    post.ImagenFile.CopyTo(fileStream);
-                }
-            }
+                    string uploadFolder = Path.Combine(_hostEnvironment.WebRootPath, "dataImages");
+                    fileName = Guid.NewGuid().ToString() + "_" + post.ImagenFile.FileName;
+                    string filePath = Path.Combine(uploadFolder, fileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        post.ImagenFile.CopyTo(fileStream);
 
-            return uniqueFileName;
+                    }
+                }
+                return fileName;
+            }
         }
     }
 }

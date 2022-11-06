@@ -18,9 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\dataImages\" />
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\images\logos\" />
     <Folder Include="wwwroot\images\creadores\" />
+    <Folder Include="wwwroot\dataImages\" />
   </ItemGroup>
 
 </Project>
