@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CheeseApp.Migrations
 {
-    public partial class changes : Migration
+    public partial class cambio : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,7 +58,7 @@ namespace CheeseApp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ImagenUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ImagenUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

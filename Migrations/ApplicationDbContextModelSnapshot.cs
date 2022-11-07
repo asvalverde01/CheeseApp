@@ -112,7 +112,6 @@ namespace CheeseApp.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ImagenUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");

@@ -66,6 +66,7 @@ namespace CheeseApp.Controllers
             {
                 string uniqueFileName = UploadedFile(post);
                 post.ImagenUrl = uniqueFileName;
+                post.Date = DateTime.Now;
 
                 _context.Add(post);
                 await _context.SaveChangesAsync();
