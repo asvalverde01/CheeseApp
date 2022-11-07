@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CheeseApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221106235116_cambio")]
+    [Migration("20221107000201_cambio")]
     partial class cambio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
